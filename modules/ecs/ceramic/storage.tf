@@ -13,16 +13,4 @@ module "s3_alb" {
   versioning = {
     enabled = true
   }
-
-  lifecycle_rule = [
-    {
-      enabled = true
-
-      noncurrent_version_expiration = {
-        days = 30
-      }
-    }
-  ]
-
-  tags = local.default_tags
 }
