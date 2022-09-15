@@ -9,19 +9,13 @@ resource "aws_lb" "external" {
   idle_timeout    = 3600
   internal        = false
 
-  access_logs {
-    bucket  = module.s3_alb.this_s3_bucket_id
-    prefix  = "external"
-    enabled = var.enable_alb_logging
-  }
-
   tags = local.default_tags
 }
 
 /* API */
 
 resource "aws_lb_listener" "api_http" {
-  count = (var.enable_external_api && ! var.use_ssl) ? 1 : 0
+  count = (var.enable_external_api && !var.use_ssl) ? 1 : 0
 
   load_balancer_arn = aws_lb.external.arn
   port              = local.api_port
@@ -73,7 +67,7 @@ resource "aws_lb_target_group" "api" {
 /* Gateway */
 
 resource "aws_lb_listener" "gateway" {
-  count = (var.enable_external_gateway && ! var.use_ssl) ? 1 : 0
+  count = (var.enable_external_gateway && !var.use_ssl) ? 1 : 0
 
   load_balancer_arn = aws_lb.external.arn
   port              = local.gateway_port
@@ -267,7 +261,7 @@ module "alb_internal" {
     }
   ]
 
-  http_tcp_listeners = ! var.use_ssl ? [
+  http_tcp_listeners = !var.use_ssl ? [
     {
       port               = local.api_port
       protocol           = "HTTP"

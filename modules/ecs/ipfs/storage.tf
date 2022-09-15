@@ -9,14 +9,6 @@ module "s3_alb" {
 
   attach_elb_log_delivery_policy = true
 
-  lifecycle_rule = [
-    {
-      enabled = true
-      expiration = {
-        days = 60
-      }
-    }
-  ]
 
   tags = local.default_tags
 }
