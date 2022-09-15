@@ -12,7 +12,7 @@ module "alb" {
   idle_timeout    = 3600
 
   access_logs = {
-    bucket = module.s3_alb.this_s3_bucket_id
+    bucket = module.s3_alb.s3_bucket_id
   }
 
   target_groups = [

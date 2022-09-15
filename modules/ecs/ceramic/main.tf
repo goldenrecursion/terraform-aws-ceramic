@@ -52,13 +52,13 @@ resource "aws_ecs_task_definition" "main" {
     memory                     = var.ecs_memory
     region                     = var.aws_region
     s3_state_store_bucket_name = var.s3_bucket_name
-    s3_access_key_id           = module.s3_ceramic_state_store_task_user.this_iam_access_key_id
-    s3_secret_access_key       = module.s3_ceramic_state_store_task_user.this_iam_access_key_secret
+    s3_access_key_id           = module.s3_ceramic_state_store_task_user.iam_access_key_id
+    s3_secret_access_key       = module.s3_ceramic_state_store_task_user.iam_access_key_secret
     verbose                    = var.enable_verbose
   })
 
-  execution_role_arn = module.ecs_task_execution_role.this_iam_role_arn
-  task_role_arn      = module.ecs_efs_task_role.this_iam_role_arn
+  execution_role_arn = module.ecs_task_execution_role.iam_role_arn
+  task_role_arn      = module.ecs_efs_task_role.iam_role_arn
   network_mode       = "awsvpc"
 
   requires_compatibilities = ["FARGATE"]

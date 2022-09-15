@@ -1,18 +1,18 @@
 module "s3_ceramic_state_store_task_group" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-group-with-policies"
-  version = "2.23"
+  version = "5.3.3"
 
   name = "s3CeramicStateStoreTask-${local.namespace}"
 
   custom_group_policy_arns = [
     aws_iam_policy.s3_ceramic_node_state_store.arn
   ]
-  group_users = [module.s3_ceramic_state_store_task_user.this_iam_user_name]
+  group_users = [module.s3_ceramic_state_store_task_user.iam_user_name]
 }
 
 module "s3_ceramic_state_store_task_user" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-user"
-  version = "3.0"
+  version = "5.3.3"
 
   name = "${local.namespace}-s3CeramicStateStoreTask"
 
@@ -42,7 +42,7 @@ resource "aws_iam_policy" "ecs_exec_policy" {
 
 module "ecs_efs_task_role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
-  version = "2.22.0"
+  version = "5.3.3"
 
   trusted_role_services = [
     "ecs-tasks.amazonaws.com"
@@ -63,7 +63,7 @@ module "ecs_efs_task_role" {
 
 module "ecs_task_execution_role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
-  version = "2.22.0"
+  version = "5.3.3"
 
   trusted_role_services = [
     "ecs-tasks.amazonaws.com"

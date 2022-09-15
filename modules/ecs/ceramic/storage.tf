@@ -1,6 +1,6 @@
 module "s3_alb" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "1.25.0"
+  version = "3.4.0"
 
   create_bucket = true
 

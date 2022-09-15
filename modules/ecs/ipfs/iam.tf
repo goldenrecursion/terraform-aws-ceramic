@@ -1,16 +1,16 @@
 module "ecs_ipfs_task_group" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-group-with-policies"
-  version = "2.23"
+  version = "5.3.3"
 
   name = "ecsIpfsTask-${local.namespace}"
 
   custom_group_policy_arns = [aws_iam_policy.main.arn]
-  group_users              = [module.ecs_ipfs_task_user.this_iam_user_name]
+  group_users              = [module.ecs_ipfs_task_user.iam_user_name]
 }
 
 module "ecs_ipfs_task_user" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-user"
-  version = "3.0"
+  version = "5.3.3"
 
   name = "ecsIpfsTask-${local.namespace}"
 
@@ -41,7 +41,7 @@ resource "aws_iam_policy" "ecs_exec_policy" {
 
 module "ecs_ipfs_task_role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
-  version = "2.22.0"
+  version = "5.3.3"
 
   trusted_role_services = [
     "ecs-tasks.amazonaws.com"
@@ -63,7 +63,7 @@ module "ecs_ipfs_task_role" {
 
 module "ecs_task_execution_role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
-  version = "2.22.0"
+  version = "5.3.3"
 
   trusted_role_services = [
     "ecs-tasks.amazonaws.com"
@@ -84,7 +84,7 @@ module "ecs_task_execution_role" {
 
 module "s3_data_sync_role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
-  version = "~> 3.0"
+  version = "5.3.3"
 
   trusted_role_services = [
     "datasync.amazonaws.com"

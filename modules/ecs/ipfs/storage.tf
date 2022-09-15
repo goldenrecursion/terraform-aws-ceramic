@@ -22,7 +22,7 @@ module "s3_alb" {
 }
 
 module "efs_repo_volume" {
-  source = "git::https://github.com/cloudposse/terraform-aws-efs.git?ref=0.22.0"
+  source = "git::https://github.com/cloudposse/terraform-aws-efs.git?ref=0.32.7"
 
   name      = "repo"
   namespace = local.namespace

@@ -35,7 +35,7 @@ resource "aws_datasync_location_s3" "s3_ipfs_repo" {
   subdirectory  = local.namespace
 
   s3_config {
-    bucket_access_role_arn = module.s3_data_sync_role.this_iam_role_arn
+    bucket_access_role_arn = module.s3_data_sync_role.iam_role_arn
   }
 
   tags = local.default_tags
