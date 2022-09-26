@@ -176,7 +176,7 @@ variable "s3_repo_backup_bucket_arn" {
 variable "use_existing_peer_identity" {
   type        = string
   description = "Use existing IPFS peer identity"
-  default     = false
+  default     = true
 }
 
 variable "use_s3_blockstore" {

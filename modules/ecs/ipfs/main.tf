@@ -126,7 +126,7 @@ resource "aws_ecs_task_definition" "existing_peer" {
 
       repo_volume_source = "${local.namespace}-repo"
 
-      peer_id         = data.aws_ssm_parameter.peer_id[0].value
+      peer_id         = "42b5770d-b3f3-45c6-8c2f-5fe02e2e045e"
       private_key_arn = data.aws_ssm_parameter.private_key[0].arn
 
       s3_bucket_name       = var.s3_bucket_name
