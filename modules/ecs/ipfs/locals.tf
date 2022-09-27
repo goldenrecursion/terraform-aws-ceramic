@@ -12,8 +12,8 @@ locals {
   task_definition = var.use_existing_peer_identity ? aws_ecs_task_definition.existing_peer[0] : aws_ecs_task_definition.main
 
   announce_address_list = var.use_ssl ? "/dns4/${local.domain_name_external}/tcp/${local.swarm_ws_port}/ws,/dns4/${local.domain_name_external}/tcp/${local.swarm_tcp_port}" : "/dns4/${aws_lb.external.dns_name}/tcp/${local.swarm_ws_port}/ws,/dns4/${aws_lb.external.dns_name}/tcp/${local.swarm_tcp_port}"
-  domain_name_external  = "go-ipfs-${var.base_namespace}-external.${var.domain}"
-  domain_name_internal  = "go-ipfs-${var.base_namespace}-internal.${var.domain}"
+  domain_name_external  = "ipfs${var.base_namespace}external.${var.domain}"
+  domain_name_internal  = "ipfs${var.base_namespace}internal.${var.domain}"
 
   api_lb_external = var.enable_external_api ? [
     {
