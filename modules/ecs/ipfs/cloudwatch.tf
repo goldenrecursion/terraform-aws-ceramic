@@ -3,8 +3,4 @@ resource "aws_cloudwatch_log_group" "data_sync" {
   name              = "/aws/datasync/${local.namespace}"
   retention_in_days = 1827
   tags              = local.default_tags
-
-  lifecycle {
-    prevent_destroy = true
-  }
 }
